@@ -1,0 +1,27 @@
+@use "./sass/layout/variables/variables";
+
+@if #{variables.$language}== "en" {
+  .#{variables.$main} {
+    padding: #{variables.$gap};
+    direction: ltr;
+    margin-left: #{variables.$gap};
+    &-#{variables.$child } {
+      padding: calc(#{variables.$gap} / 2);
+    }
+    &:hover &-#{variables.$child } {
+      background-color: #eee;
+    }
+  }
+} @else {
+  .#{variables.$main} {
+    padding: #{variables.$gap};
+    direction: rtl;
+    margin-left: #{variables.$gap};
+    &-#{variables.$child } {
+      padding: calc(#{variables.$gap} / 2);
+    }
+    &:hover &-#{variables.$child } {
+      background-color: #eee;
+    }
+  }
+}
