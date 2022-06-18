@@ -1,0 +1,83 @@
+// 1
+@mixin arrow($direction) {
+  content: "";
+  position: absolute;
+  border: 20px solid transparent;
+  top: -40px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  @if $direction== "top" {
+    border-bottom-color: red;
+  } @else if $direction== "bottom" {
+    border-top-color: red;
+  } @else if $direction== "right" {
+    border-left-color: red;
+  } @else if $direction== "left" {
+    border-right-color: red;
+  }
+}
+
+.element {
+  &:before {
+    @include arrow("top");
+  }
+}
+
+.element {
+  &:before {
+    @include arrow("right");
+  }
+}
+.element {
+  &:before {
+    @include arrow("bottom");
+  }
+}
+.element {
+  &:before {
+    @include arrow("left");
+  }
+}
+
+// 2
+
+$cols: 16;
+@for $i from 1 through 16 {
+  .col-#{$i} {
+    width: percentage($i / $cols);
+  }
+}
+
+// 3
+
+$names: "books" 20px red 18, "games" 30px green 18, "dvds" 20px blue;
+
+@each $name, $pad, $clr, $size in $names {
+  @if ($size==null) {
+    $size: 16;
+  }
+  .#{$name} {
+    padding: $pad;
+    font-size: #{$size}px;
+    border-bottom: 2px solid $clr;
+    color: #444;
+  }
+}
+
+// 4
+
+$num: 2;
+$start: 100;
+
+@function double($size) {
+  @return $size * $num;
+}
+
+@for $i from 1 through 5 {
+  .box-#{$start} {
+    width: $start;
+    height: $start * 2;
+  }
+  $start: $start * 2;
+}
